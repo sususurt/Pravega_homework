@@ -11,6 +11,7 @@
 
 1. Running Pravega as the standalone mode.  
 2. Using Intellij open this project.
+> Pravega version : '0.9.1'
 
 ## Usage example
 
