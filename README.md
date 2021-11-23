@@ -40,4 +40,5 @@ Enter `bye` in the terminal.
 ## Meta
 
 Ruitong Su @ECE-Duke Kunshan University
+Email: ruitong.su@duke.edu
 
