@@ -1,7 +1,7 @@
 # Pravega Homework
-> A simple chat room based on pravega.
+> A simple chat room based on Pravega.
 
-Homework requirements:
+**_Homework requirements:_**
 - (Basic)One to One Chat ✅
 - (Option)Group Chat ✅
 - (Option)File transfer ✅
@@ -9,7 +9,7 @@ Homework requirements:
 
 ## Installation
 
-1. Running pravega as the standalone mode.  
+1. Running Pravega as the standalone mode.  
 2. Using Intellij open this project.
 
 ## Usage example
@@ -24,7 +24,8 @@ Homework requirements:
 ### File transfer
 #### Upload
 Prefix:`upload@`  
-When the input message start with the prefix,  
+When the input message start with the prefix,
+(`upload@/Users/user/test.txt`)
 the content after will be treated as a path to the file.
 If the file is upload successfully, it will display
 `(Yourname) has upload a file.`
