@@ -17,11 +17,11 @@ public class Chat implements Runnable {
     protected boolean isChatting = true;
     // Names
     protected String selfName, peerName, groupName, streamName;
-    // default settings
+    // Default settings
     protected String controllerURI = "tcp://127.0.0.1:9090";
     protected String scopeName = "ChatRoom";
     protected String file_scopeName = "FileTransfer";
-    // pravega apis
+    // Pravega APIs
     protected StreamManager streamManager, file_streamManager;
     protected ReaderGroupManager readerGroupManager, file_readerGroupManager;
     protected EventStreamWriter<byte[]> writer, file_writer;
@@ -30,7 +30,9 @@ public class Chat implements Runnable {
     /***
      * Constructor
      * @param mode 1->One to One chat; 2->Group chat
-     *
+     * Intro:
+     *            Creating two streams, one is used for chatting, and
+     *            the other is used for file transfer.
      * One to One mode:
      *            create the stream name by adding selfName's hashcode
      *            and peerName's hashcode together, make sure that only
@@ -38,9 +40,6 @@ public class Chat implements Runnable {
      * Group chat mode:
      *            creat the stream name by the group name, which means
      *            that anyone knows the group name can join this stream.
-     * intro:
-     *             Creating two streams, one is used for chatting, and
-     *             the other is used for file transfer.
      */
     public Chat(String selfName, String peerName, String groupName, int mode) throws Exception {
         if (mode == 1) {
@@ -123,11 +122,14 @@ public class Chat implements Runnable {
         byte[] byt = new byte[input.available()];
         input.read(byt);
         file_writer.writeEvent(byt);
+        input.close();
     }
 
     /***
      *  read the file transfer stream,
      *  convert the events(byte[]) to file
+     *  Received file name: receivedFile
+     *  Path: project root directory
      */
     public void receiveFile(EventStreamReader<byte[]> reader) throws Exception {
         EventRead<byte[]> event = reader.readNextEvent(500);
@@ -135,6 +137,7 @@ public class Chat implements Runnable {
             OutputStream output = new FileOutputStream("receivedFile");
             output.write(event.getEvent());
             System.out.println("File download success.");
+            output.close();
             requestDownload = false;
         } else {
             System.out.println("No new file to download.");

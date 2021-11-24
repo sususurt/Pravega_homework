@@ -26,7 +26,7 @@ public class Client {
             System.out.print("Please Enter your peer's name: ");
             peerName = getName();
         }
-        else if (mode == 2){
+        if (mode == 2){
             System.out.print("Please Enter Group name: ");
             groupName = getName();
         }
@@ -36,8 +36,7 @@ public class Client {
     /*Utility Function*/
     public static String getName(){
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        return name;
+        return scanner.nextLine();
     }
 
     public static void main(String[] args) throws Exception {
